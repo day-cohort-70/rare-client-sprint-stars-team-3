@@ -2,6 +2,7 @@ import { useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
 
+
 export const Login = ({ setToken }) => {
   const username = useRef()
   const password = useRef()
@@ -15,10 +16,11 @@ export const Login = ({ setToken }) => {
       username: username.current.value,
       password: password.current.value
     }
-
+    
     loginUser(user).then(res => {
-      if ("valid" in res && res.valid) {
-        setToken(res.token)
+      let parsedRes = JSON.parse(res);
+      if (parsedRes?.valid) {
+        setToken(parsedRes.token)
         navigate("/")
       }
       else {
