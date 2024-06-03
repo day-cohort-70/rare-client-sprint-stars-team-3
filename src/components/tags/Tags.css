@@ -1,0 +1,15 @@
+.tag-page {
+    display: flex;
+}
+
+.tags-container {
+    width: 400px;
+}
+
+.tag-container {
+    margin: 10px;
+}
+
+.tag {
+    /* border: 1px orangered solid; */
+}
