@@ -34,9 +34,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route index element={<AllPosts />} /> 
         <Route path="/myposts" element={<MyPosts />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/category-form" element={<CategoryForm currentUser={currentUser}/>}/>
-        
-        <Route path="/tags" element={<Tags />} />
+        <Route path="/tags" element={<Tags token={token}/>} />
         
       </Route>
     </Routes>
