@@ -6,8 +6,26 @@ import {Tags} from "../components/tags/Tags";
 import {MyPosts} from '../components/posts/MyPosts.jsx'
 import {AllPosts} from '../components/posts/AllPosts.jsx'
 import {Categories} from '../components/categories/Categories.jsx'
+import { CategoryForm } from "../components/categories/CategoryForm.jsx";
+import { useEffect, useState } from "react";
 
 export const ApplicationViews = ({ token, setToken }) => {
+  
+  const [currentUser, setCurrentUser] = useState({})
+
+
+  useEffect(() => {
+    const localUser = localStorage.getItem("auth_token")
+    const UserObject = JSON.parse(localUser)
+    setCurrentUser(UserObject)
+  }, [])
+
+  
+  
+  
+  
+  
+  
   return <>
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />}  />
