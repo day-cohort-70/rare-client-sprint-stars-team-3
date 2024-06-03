@@ -1,0 +1,15 @@
+.posts {
+
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.title {
+    font-size:40px;
+}
+
+.post_title {
+    font-weight: bold;
+}
