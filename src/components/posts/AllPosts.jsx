@@ -17,10 +17,10 @@ export const AllPosts = () => {
         <ul >
           {posts.map((post) => (
             <li className="posts" key={post.id}>
-              <h2>Title: {post.title}</h2>
-              <p>Author: {post.username}</p>
-              <p>Category: {post.label}</p>
-              <p>Publication Date: {post.publication_date}</p>
+              <span><strong>Title:</strong> {post.title}</span>
+              <p><strong>Author:</strong> {post.username}</p>
+              <p><strong>Category:</strong> {post.label}</p>
+              <p><strong>Publication Date:</strong> {post.publication_date}</p>
             </li>
           ))}
         </ul>
