@@ -1,5 +1,10 @@
 .posts {
-    border: 12cqb;
-    border-radius: 4cm;
-    border-color: black;
+
+  border: 2px solid black;
+  padding: 5px;
+  margin: 5px;
+}
+
+.title {
+    font-size:40px;
 }

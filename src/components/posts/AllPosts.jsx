@@ -12,15 +12,15 @@ export const AllPosts = () => {
     }, []);
   
     return (
-      <div className="posts">
-        <h1>All Posts</h1>
-        <ul>
+      <div>
+        <div className="title">All Posts</div>
+        <ul >
           {posts.map((post) => (
-            <li key={post.id}>
-              <h2>{post.title}</h2>
-              <p>{post.username}</p>
-              <p>{post.label}</p>
-              <p>{post.publication_date}</p>
+            <li className="posts" key={post.id}>
+              <h2>Title: {post.title}</h2>
+              <p>Author: {post.username}</p>
+              <p>Category: {post.label}</p>
+              <p>Publication Date: {post.publication_date}</p>
             </li>
           ))}
         </ul>
