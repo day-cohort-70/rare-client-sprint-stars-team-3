@@ -126,7 +126,7 @@ export const Tags = ({token}) => {
                 }}>
                     <div className="popup-content">
                         <h2>Edit Tag</h2>
-                        <input type="text" defaultValue={editingTag? editingTag.name : ""} onChange={(e) => setNewTagName(e.target.value)} />
+                        <input type="text" defaultValue={editingTag? editingTag.label : ""} onChange={(e) => setNewTagName(e.target.value)} />
                         <button onClick={() => saveTag(newTagName)}>Save</button>
                         <button onClick={closePopup}>Cancel</button>
                     </div>
