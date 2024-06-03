@@ -12,12 +12,25 @@ export const Categories = () => {
     
     
 
-  useEffect(()=>{
-    getAllCategories().then(array=>{
-        setAllcategories(array)
-    })
-    console.log("categories are set in state")
-  })
+    useEffect(() => {
+        getAllCategories().then((array) => {
+          // Sort the categories alphabetically
+          const sortedCategories = array.sort((a, b) => {
+            const nameA = a.label?.toUpperCase(); // ignore upper and lowercase
+            const nameB = b.label?.toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+            // name must be equal
+            return 0;
+          });
+          // Set the sorted categories to the state
+          setAllcategories(sortedCategories);
+        });
+      }, []);
 
 
     
@@ -27,7 +40,23 @@ export const Categories = () => {
     
     
     return <>
-    <div>Here are some categories</div>
+
+    <div className="categories-container">
+    <div className="box">Here are some categories</div>
+
+
+    <div className="categories-list-container">
+        {allCategories.map(category =>{
+           return(
+           <li key={category.id}>
+            <h2>{category.label}</h2>
+            <button>edit</button>
+            <button>delete</button>
+            </li>) 
+            
+            
+        })}
+    </div>
     
 
     <div class="buttons">
@@ -39,7 +68,7 @@ export const Categories = () => {
     
     
     
-    
+    </div>
     
     </>
 
