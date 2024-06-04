@@ -3,7 +3,8 @@ import { fetchPostDetails } from "../services/postService.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 
 
-function PostDetails({ postId }) {
+function PostDetails() {
+    const { postId } = useParams();
     const [post, setPost] = useState(null);
   
     useEffect(() => {
@@ -25,7 +26,7 @@ function PostDetails({ postId }) {
             <p>{post.image_url}</p>
             <p>{post.content}</p>
             <p>Date Published: {post.publication_date}</p>
-            <p>Posted by {post.first_name} {post.last_name}</p>
+            <p>Posted by {post.username}</p>
         </div>
     );
 }

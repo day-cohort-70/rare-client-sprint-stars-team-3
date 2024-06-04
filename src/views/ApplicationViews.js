@@ -8,23 +8,17 @@ import {AllPosts} from '../components/posts/AllPosts.jsx'
 import {Categories} from '../components/categories/Categories.jsx'
 import { CategoryForm } from "../components/categories/CategoryForm.jsx";
 import { useEffect, useState } from "react";
+import PostDetails from "../components/posts/PostDetails.jsx";
 
 export const ApplicationViews = ({ token, setToken }) => {
   
   const [currentUser, setCurrentUser] = useState({})
-
 
   useEffect(() => {
     const localUser = localStorage.getItem("auth_token")
     const UserObject = JSON.parse(localUser)
     setCurrentUser(UserObject)
   }, [])
-
-  
-  
-  
-  
-  
   
   return <>
     <Routes>
@@ -32,6 +26,7 @@ export const ApplicationViews = ({ token, setToken }) => {
       <Route path="/register" element={<Register setToken={setToken} />}  />
       <Route element={<Authorized token={token} />}>
       <Route index element={<AllPosts />} /> 
+        <Route path="/post/:postId" element={<PostDetails />} />
         <Route path="/myposts" element={<MyPosts />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/tags" element={<Tags token={token}/>} />
