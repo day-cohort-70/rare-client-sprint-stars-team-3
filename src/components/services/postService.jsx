@@ -6,7 +6,7 @@ export const getAllPosts = async () => {
 
 export const fetchPostDetails = async (postId) => {
     try {
-        const response = await fetch(`http://localhost:8000/posts/${postId}`);
+        const response = await fetch(`http://localhost:8000/posts/${postId}?_expand=user`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
