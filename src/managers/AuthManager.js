@@ -13,6 +13,7 @@ export const loginUser = (user) => {
 }
 
 export const registerUser = (newUser) => {
+  debugger
   return fetch("http://localhost:8000/register", {
     method: "POST",
     headers: {

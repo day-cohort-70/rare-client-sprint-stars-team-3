@@ -13,13 +13,13 @@ import PostDetails from "../components/posts/PostDetails.jsx";
 
 export const ApplicationViews = ({ token, setToken }) => {
   
-  const [currentUser, setCurrentUser] = useState({})
+  // const [currentUser, setCurrentUser] = useState({})
 
-  useEffect(() => {
-    const localUser = localStorage.getItem("auth_token")
-    const UserObject = JSON.parse(localUser)
-    setCurrentUser(UserObject)
-  }, [])
+  // useEffect(() => {
+  //   const localUser = localStorage.getItem("auth_token")
+  //   const UserObject = JSON.parse(localUser)
+  //   setCurrentUser(UserObject)
+  // }, [])
   
   return <>
     <Routes>
