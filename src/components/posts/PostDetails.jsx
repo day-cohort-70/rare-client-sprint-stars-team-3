@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchPostDetails } from "../services/postService.jsx";
+import { fetchPostDetails } from "../../services/postService.js";
 import { useNavigate, useParams } from "react-router-dom";
 
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./category.css"
-import { createCategory } from "../../managers/CategoryManager.js"
+import { createCategory } from "../../services/categoryService.js"
 import { Link } from "react-router-dom"
 
 export const CategoryForm = (currentUser)=>{
