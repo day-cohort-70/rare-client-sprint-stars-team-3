@@ -1,6 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { fetchUserPosts } from "../../services/postService.js";
+import { Link } from "react-router-dom";
+import editIcon from '../../assets/edit.png';
+import trashIcon from '../../assets/trash.png';
+import "./MyPosts.css"
 
 export const MyPosts = () => {
-    return <>
-    <div>My posts go here</div></>
-}
+  const [posts, setPosts] = useState([]);
+  const token = localStorage.getItem('auth_token');
+
+
+  useEffect(() => {
+    fetchUserPosts(token).then((data) => {
+      setPosts(data);
+    });
+  }, []);
+
+
+  return (
+    <div>
+      <div className="title">My Posts</div>
+      <ul >
+      {posts.map((post) => (
+    <div className="post-container" key={post.id}>
+        <img src={post.image_url} alt={`Post ${post.id}`} className="post-image" />
+        <div className="post-info">
+            <div className="top-section">
+                <div className="post-title">{post.title}</div>
+                <div className="post-date">{post.publication_date}</div>
+            </div>
+            <div className="bottom-section">
+                <div className="post-username">{post.username}</div>
+                <div className="reactions">
+                    <span># reaction count</span>
+                    <img src={editIcon} alt="Edit" className="icon" />
+                    <img src={trashIcon} alt="Delete" className="icon" />
+                </div>
+            </div>
+        </div>
+    </div>
+))}
+      </ul>
+    </div>
+  );
+};
