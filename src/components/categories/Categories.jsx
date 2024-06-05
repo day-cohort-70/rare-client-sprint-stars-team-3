@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
-import { getAllCategories } from "../../managers/CategoryManager.js";
+import { getAllCategories } from "../../services/categoryService.js";
 
 
 

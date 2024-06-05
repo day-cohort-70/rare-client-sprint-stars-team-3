@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { getAllTags } from "../../services/tagsService";
+import { getAllTags, insertTag, deleteTag, editTag } from "../../services/tagsService";
 import trash from '../../assets/trash.png'
 import edit from '../../assets/edit.png'
 import './Tags.css'
@@ -10,11 +10,12 @@ export const Tags = ({token}) => {
     const [tags, setTags] = useState([]);
     const [newTagName, setNewTagName] = useState("");
     const [editingTag, setEditingTag] = useState(null); // state for tag being edited
-    const [deletingTag, setDeletingTag] = useState(null); // state for tag being edited
+    const [deletingTag, setDeletingTag] = useState(null); // state for tag being deleted
     const [showPopup, setShowPopup] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
     const [confirmationPosition, setConfirmationPosition] = useState({ x: 0, y: 0 });
+    const [needsRefresh, setNeedsRefresh] = useState(false);
 
     useEffect(() => {
         getAllTags().then(tags => {
@@ -35,15 +36,35 @@ export const Tags = ({token}) => {
     }, []);
 
     useEffect(() => {
-
-    }, [])
+        if (needsRefresh) {
+            getAllTags().then(tags => {
+                //if tags is not empty, sort alphabetically and set in state
+                if (tags.length) {
+                    const sortedTags = tags.sort((a, b) => {
+                        if (typeof a.label === 'string' && typeof b.label === 'string') {
+                          return a.label.localeCompare(b.label);
+                        }
+                        return 0; 
+                      });
+                    setTags(sortedTags);
+                }
+                else {
+                    setTags(tags);
+                }
+            });
+            setNeedsRefresh(false); // Reset the flag after fetching tags
+        }
+    }, [needsRefresh]);
     
     const handleInputChange = (event) => {
         setNewTagName(event.target.value);
     }
 
     const handleSubmit = (event) => {
-        console.log(newTagName);
+        const tagToCreate = {
+            label: newTagName
+        }
+        createTag(tagToCreate);
     }
     
     const confirmDelete = (tag, event) => {
@@ -57,13 +78,15 @@ export const Tags = ({token}) => {
         });
     }
 
-    const deleteTag = (tag) => {
-        console.log(`Delete tag ${tag.id}`);
+    const confirmDeleteTag = async (tag) => {
+        await deleteTag(tag.id);
+        closeConfirmation();
+        setNeedsRefresh(true);
     }
 
-    const createTag = (tagName) => {
-        console.log("Creating tag:", tagName);
-        // todo: add creation logic
+    const createTag = async (tag) => {
+        await insertTag(tag);
+        setNeedsRefresh(true);
     };
 
     const startEditing = (tag, event) => {
@@ -77,10 +100,14 @@ export const Tags = ({token}) => {
         });
     };
 
-    const saveTag = (updatedName) => {
-        console.log("Saving tag with new name:", updatedName);
-        // todo: add save logic
+    const saveTag = async (tagId, updatedName) => {
+        const tagToSave = {
+            id: tagId,
+            label: updatedName
+        }
+        await editTag(tagToSave);
         setShowPopup(false); 
+        setNeedsRefresh(true);
     };
 
     const closePopup = () => {
@@ -127,7 +154,7 @@ export const Tags = ({token}) => {
                     <div className="popup-content">
                         <h2>Edit Tag</h2>
                         <input type="text" defaultValue={editingTag? editingTag.label : ""} onChange={(e) => setNewTagName(e.target.value)} />
-                        <button onClick={() => saveTag(newTagName)}>Save</button>
+                        <button onClick={() => saveTag(editingTag.id, newTagName)}>Save</button>
                         <button onClick={closePopup}>Cancel</button>
                     </div>
                 </div>
@@ -146,7 +173,7 @@ export const Tags = ({token}) => {
             }}>
                 <div className="popup-content">
                     <h2>Are you sure you want to delete this tag?</h2>
-                    <button onClick={() => deleteTag(deletingTag)}>Confirm</button>
+                    <button onClick={() => confirmDeleteTag(deletingTag)}>Confirm</button>
                     <button onClick={closeConfirmation}>Cancel</button>
                 </div>
             </div>
