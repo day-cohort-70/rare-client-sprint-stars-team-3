@@ -26,3 +26,14 @@ export const fetchPostDetails = async (postId) => {
         throw error; // Rethrow the error to handle it in the calling component
     }
 }
+}
+
+export const fetchUserPosts = async (id) => {
+  return await fetch(`http://localhost:8000/userposts/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+    },
+  }).then((res) => res.json());
+};
