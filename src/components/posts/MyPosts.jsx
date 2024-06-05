@@ -23,12 +23,13 @@ export const MyPosts = () => {
       <ul >
       {posts.map((post) => (
     <div className="post-container" key={post.id}>
-        <img src={post.image_url} alt={`Post ${post.id}`} className="post-image" />
+        
         <div className="post-info">
             <div className="top-section">
                 <div className="post-title">{post.title}</div>
                 <div className="post-date">{post.publication_date}</div>
             </div>
+            <img src={post.image_url} alt={`Post ${post.id}`} className="post-image" />
             <div className="bottom-section">
                 <div className="post-username">{post.username}</div>
                 <div className="reactions">
