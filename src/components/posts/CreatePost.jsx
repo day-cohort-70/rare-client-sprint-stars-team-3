@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createPost } from '../../services/postService'; // Adjust the import path as necessary
+import { createPost } from '../../services/postService';
+
 
 export const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -21,14 +22,11 @@ export const CreatePost = () => {
       headerImageURL,
     };
 
-    try {
-      const newPost = await createPost(postData);
-      console.log('New post created:', newPost);
-      navigate(`/posts/${newPost.id}`); 
-    } catch (error) {
-      console.error('Error creating post:', error);
+    createPost(postData).then(newPost => {
+    console.log('New post created:', newPost);
+    navigate(`/posts/${newPost.id}`);
       
-    }
+    })
   };
 
   return (
