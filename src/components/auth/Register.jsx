@@ -15,8 +15,8 @@ export const Register = ({setToken}) => {
   const navigate = useNavigate()
 
   const handleRegister = (e) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+  
     if (password.current.value === verifyPassword.current.value) {
       const newUser = {
         username: username.current.value,
@@ -24,18 +24,21 @@ export const Register = ({setToken}) => {
         last_name: lastName.current.value,
         email: email.current.value,
         password: password.current.value,
-        bio: bio.current.value
-      }
-
+        bio: bio.current.value,
+        profile_image_url: "placeholder"
+      };
+  
       registerUser(newUser)
-        .then(res => {
-          if ("valid" in res && res.valid) {
-            setToken(res.token)
-            navigate("/")
-          }
+       .then(() => {
+          // Assuming successful registration, navigate to /login
+          navigate("/login");
         })
+       .catch((error) => {
+          console.error('Registration failed:', error);
+          // Optionally, show an error message to the user
+        });
     } else {
-      passwordDialog.current.showModal()
+      passwordDialog.current.showModal();
     }
   }
 
@@ -98,7 +101,7 @@ export const Register = ({setToken}) => {
 
         <div className="field is-grouped">
           <div className="control">
-            <button className="button is-link" type="submit">Submit</button>
+           <button className="button is-link" type="submit">Submit</button>
           </div>
           <div className="control">
             <Link to="/login" className="button is-link is-light">Cancel</Link>
