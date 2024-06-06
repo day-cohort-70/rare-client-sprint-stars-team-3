@@ -10,16 +10,17 @@ import { Home } from "../components/posts/Home.jsx";
 import { CategoryForm } from "../components/categories/CategoryForm.jsx";
 import { useEffect, useState } from "react";
 import PostDetails from "../components/posts/PostDetails.jsx";
+import { UpdateCategory } from "../components/categories/updateCategory.jsx";
 
 export const ApplicationViews = ({ token, setToken }) => {
   
-  const [currentUser, setCurrentUser] = useState({})
+  
 
-  useEffect(() => {
-    const localUser = localStorage.getItem("auth_token")
-    const UserObject = JSON.parse(localUser)
-    setCurrentUser(UserObject)
-  }, [])
+  
+  
+  
+  
+  
   
   return <>
     <Routes>
@@ -30,10 +31,13 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/posts" element={<AllPosts />} />
         <Route path="/post/:postId" element={<PostDetails />} />
         <Route path="/myposts" element={<MyPosts />} />
-        <Route path="/categories" element={<Categories />} />
         <Route path="/tags" element={<Tags token={token}/>} />
         
       </Route>
+    
+
+      
+
     </Routes>
   </>
 }

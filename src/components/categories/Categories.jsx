@@ -50,7 +50,11 @@ export const Categories = () => {
            return(
            <li key={category.id}>
             <h2>{category.label}</h2>
-            <button>edit</button>
+            
+            <Link key={category.id} to={`/categories/${category.id}`}>
+                <button>edit</button>
+            </Link>
+            
             <button>delete</button>
             </li>) 
             
