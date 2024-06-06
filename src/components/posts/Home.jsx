@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { fetchUserPosts } from "../../services/postService.js";
+import { fetchPosts } from "../../services/postService.js";
 import { Link } from "react-router-dom";
 import editIcon from '../../assets/edit.png';
 import trashIcon from '../../assets/trash.png';
 import "./MyPosts.css"
 
-export const MyPosts = () => {
+export const Home = () => {
   const [posts, setPosts] = useState([]);
   const token = localStorage.getItem('auth_token');
 
 
   useEffect(() => {
-    fetchUserPosts(token).then((data) => {
+    fetchPosts(token).then((data) => {
       setPosts(data);
     });
   }, []);
@@ -19,7 +19,7 @@ export const MyPosts = () => {
 
   return (
     <div>
-      <div className="title">My Posts</div>
+      <div className="title"></div>
       <ul >
       {posts.map((post) => (
     <div className="post-container" key={post.id}>
