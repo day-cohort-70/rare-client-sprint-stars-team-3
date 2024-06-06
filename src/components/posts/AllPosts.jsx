@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchPosts } from "../../services/postService.js";
 import { Link } from "react-router-dom";
 import "./AllPosts.css"
