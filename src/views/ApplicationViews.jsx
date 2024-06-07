@@ -9,7 +9,7 @@ import {Categories} from '../components/categories/Categories.jsx'
 import { Home } from "../components/posts/Home.jsx";
 import { CategoryForm } from "../components/categories/CategoryForm.jsx";
 import { useEffect, useState } from "react";
-import PostDetails from "../components/posts/PostDetails.jsx";
+import { PostDetails } from "../components/posts/PostDetails.jsx";
 import { CreatePost } from "../components/posts/CreatePost.jsx";
 
 export const ApplicationViews = ({ token, setToken }) => {
