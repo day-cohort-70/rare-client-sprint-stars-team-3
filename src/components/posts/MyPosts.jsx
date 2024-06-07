@@ -7,28 +7,22 @@ import "./MyPosts.css"
 import { fetchUserPosts } from "../../services/postService.js";
 
 export const MyPosts = () => {
-  const [postData, setPostData] = useState({ posts: [], message: "" }); // Rename to postData for clarity
-  const token = localStorage.getItem('auth_token');
+    const [posts, setPosts] = useState([]);
+    const token = localStorage.getItem('auth_token');
 
   useEffect(() => {
-    fetchUserPosts(token)
-      .then((data) => {
-        setPostData(data); // Set the entire data object, including both posts and potentially a message
-      })
-      .catch((error) => {
-        console.error('Failed to load posts:', error);
-        // Optionally handle the error state
-      });
-  }, [token]);
+    fetchUserPosts(token).then((data) => {
+      setPosts(data);
+      console.log(data);
+    });
+  }, []);
 
-  // Extract posts and message from postData for easier access
-  const { posts, message } = postData;
+
 
   return (
     <div>
       <div className="title">My Posts</div>
-      {message && <p>{message}</p>} {/* Display the message if it exists */}
-      <ul>
+      {posts.length === 0 ? (<div>User has no posts</div>) : (<ul>
         {posts.map((post) => (
           <div className="post-container" key={post.id}>
             <div className="post-info">
@@ -48,7 +42,8 @@ export const MyPosts = () => {
             </div>
           </div>
         ))}
-      </ul>
+      </ul>)}
+      
     </div>
   );
 };
