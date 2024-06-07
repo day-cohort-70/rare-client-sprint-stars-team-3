@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchUserPosts } from "../../services/postService.js";
+
 import { Link } from "react-router-dom";
 import editIcon from '../../assets/edit.png';
 import trashIcon from '../../assets/trash.png';
 import "./MyPosts.css"
+import { fetchUserPosts } from "../../services/postService.js";
 
 export const MyPosts = () => {
   const [posts, setPosts] = useState([]);

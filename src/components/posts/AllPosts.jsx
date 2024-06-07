@@ -19,24 +19,38 @@ export const AllPosts = () => {
  // })
 
   return (
-    <div>
+     <div>
       <div className="title">All Posts</div>
-      <ul >
+      <div className="posts-grid">
         {posts.map((post) => (
-          <li className="posts" key={post.id}>
-            <span><strong>Title:</strong> {post.title}</span>
-            <p><strong>Author:</strong> {post.username}</p>
-            <p><strong>Category:</strong> {post.label}</p>
-            <p><strong>Publication Date:</strong> {post.publication_date}</p>
+          <div key={post.id} className="post">
+            <div className="post-attribute">
+              <strong>Title:</strong> {post.title}
+            </div>
+            <div className="post-attribute">
+              <strong>Author:</strong> {post.username}
+            </div>
+            <div className="post-attribute">
+              <strong>Category:</strong> {post.label}
+            </div>
+            <div className="post-attribute">
+              <strong>Publication Date:</strong> {post.publication_date}
+            </div>
+            <div className="post-attribute">
+              <div className="checkbox-container">
+                <input type="checkbox" id={`postCheckbox_${post.id}`} />
+                <label className="checkbox-label" htmlFor={`postCheckbox_${post.id}`}>Approved</label>
+              </div>
+            </div>
             <div className="post-details-btn">
               <Link to={{
                 pathname: `/post/${post.id}`,
                 state: { postId: post.id }
               }}>View Post Details</Link>
             </div>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
