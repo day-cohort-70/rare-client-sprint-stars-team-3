@@ -14,14 +14,6 @@ import { CreatePost } from "../components/posts/CreatePost.jsx";
 
 export const ApplicationViews = ({ token, setToken }) => {
   
-  // const [currentUser, setCurrentUser] = useState({})
-
-  // useEffect(() => {
-  //   const localUser = localStorage.getItem("auth_token")
-  //   const UserObject = JSON.parse(localUser)
-  //   setCurrentUser(UserObject)
-  // }, [])
-  
   return <>
     <Routes>
       <Route path="/login" element={<Login setToken={setToken} />}  />
