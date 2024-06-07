@@ -37,3 +37,14 @@ export const fetchUserPosts = async (id) => {
     },
   }).then((res) => res.json());
 };
+
+export const createPost = async (newPost) => {
+  return await fetch(`http://localhost:8000/posts`, {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(newPost),
+              })
+              .then(response => response)
+            }

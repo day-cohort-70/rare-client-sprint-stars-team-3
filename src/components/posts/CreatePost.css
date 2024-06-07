@@ -1,0 +1,53 @@
+.newpost {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .newpost h2 {
+    margin-bottom: 20px;
+  }
+  
+  .newpost form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .newpost form input[type="text"],
+  .newpost form textarea,
+  .newpost form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .newpost form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .newpost form button:hover {
+    background-color: #0056b3;
+  }
+
+  .newpost textarea {
+    height: 200px; /* Adjust the height as needed */
+    width: 100%; /* Make it fill the width of its container */
+  }
+  
+  
+  /* Optional: Style the optional header image input differently */
+  .newpost form label[for="header-image-url"] {
+    font-style: italic;
+  }
+  
