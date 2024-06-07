@@ -11,6 +11,7 @@ import { CategoryForm } from "../components/categories/CategoryForm.jsx";
 import { useEffect, useState } from "react";
 import { PostDetails } from "../components/posts/PostDetails.jsx";
 import { CreatePost } from "../components/posts/CreatePost.jsx";
+import { UpdateCategory } from "../components/categories/UpdateCategory.jsx";
 
 export const ApplicationViews = ({ token, setToken }) => {
   
@@ -24,6 +25,7 @@ export const ApplicationViews = ({ token, setToken }) => {
         <Route path="/post/:postId" element={<PostDetails />} />
         <Route path="/myposts" element={<MyPosts />} />
         <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:categoryId" element={<UpdateCategory/>}/>
         <Route path="/category-form" element={<CategoryForm />} />
         <Route path="/tags" element={<Tags token={token}/>} />
         <Route path="/createpost" element={<CreatePost token={token}/>} />
