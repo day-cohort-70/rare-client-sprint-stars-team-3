@@ -28,16 +28,43 @@ export const fetchPostDetails = async (postId) => {
 }
 
 
+// export const fetchUserPosts = async (id) => {
+//   return await fetch(`http://localhost:8000/userposts/${id}`, {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "Accept": "application/json",
+//     },
+//   }).then((res) => res.json());
+// };
+
 export const fetchUserPosts = async (id) => {
-  return await fetch(`http://localhost:8000/userposts/${id}`, {
+  const response = await fetch(`http://localhost:8000/userposts/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       "Accept": "application/json",
     },
-  }).then((res) => res.json());
-};
+  });
 
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  const posts = await response.json();
+
+  // Check if the posts array is empty
+  if (posts.length === 0) {
+    // Construct a custom response object
+    return {
+      message: "You haven't contributed any posts yet. Click the 'Create Post' button below to get started!",
+      posts: []
+    };
+  } else {
+    // Return the posts as usual
+    return posts;
+  }
+};
 export const createPost = async (newPost) => {
   return await fetch(`http://localhost:8000/posts`, {
                   method: 'POST',
